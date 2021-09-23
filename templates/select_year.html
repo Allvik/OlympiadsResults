@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выберите год!</title>
+</head>
+<body>
+    <ul>
+        {% for year in years %}
+            <li>
+                <a href="{{ year }}">{{ year }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

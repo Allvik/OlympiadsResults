@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбрать тип</title>
+</head>
+<body>
+    <ul>
+        {% for type in types %}
+            <li>
+                <a href="{{ type }}">{{ type }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

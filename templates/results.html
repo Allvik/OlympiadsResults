@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лучшие 20 школ</title>
+</head>
+<body>
+    <table border="1">
+        <caption>Лучшие 20 школ</caption>
+        <tr>
+            <th>Название школы</th>
+            <th>Количество победителей</th>
+            <th>Количество призеров</th>
+        </tr>
+        {% for cur in results %}
+            <tr>
+                <td>{{ cur.school }}</td>
+                <td>{{ cur.cnt_winners }}</td>
+                <td>{{ cur.cnt_prizers }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выберите предмет!</title>
+</head>
+<body>
+    <ul>
+        {% for subject in subjects %}
+            <li>
+                <a href="{{ subject }}">{{ subject }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
