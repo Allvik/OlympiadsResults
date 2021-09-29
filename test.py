@@ -4,9 +4,9 @@ answer = []
 with open("olymp.csv", "r") as fin:
     results = csv.DictReader(fin, delimiter=';', quotechar='"')
     for cur in results:
-        cur.pop('')
-        if cur['Stage'] == '':
-            cur['Stage'] = 'Заключительный'
+        for i in cur:
+            cur[i] = cur[i].replace(' ', '-')
+            cur[i] = cur[i].replace('/', '-')
         answer.append(cur)
 with open("olymp.csv", "w") as fout:
     writer = csv.DictWriter(fout, fieldnames=["IDEKIS", "ID", "FullName", "ShortName", "OlympiadType", "Stage", "Class",

@@ -13,82 +13,42 @@ class SchoolResults:
         self.school = _school
 
 
-def get_new_year(year):
-    new_year = ''
-    for i in year:
-        if i == '/':
-            new_year += '-'
-        else:
-            new_year += i
-    return new_year
-
-
-def get_old_year(year):
-    old_year = ''
-    for i in year:
-        if i == '-':
-            old_year += '/'
-        else:
-            old_year += i
-    return old_year
-
-
-def get_new_string(a):
-    ans = ''
-    for i in a:
-        if i == ' ':
-            ans += '-'
-        else:
-            ans += i
-    return ans
-
-
-def get_old_string(a):
-    ans = ''
-    for i in a:
-        if i == '-':
-            ans += ' '
-        else:
-            ans += i
-    return ans
-
-
 def select_year(request):
     with open("olymp.csv", "r") as fin:
         results = csv.DictReader(fin, delimiter=';', quotechar='"')
         years = dict()
         for cur in results:
-            years[get_new_year(cur['Year'])] = True
+            years[cur['Year']] = True
         return render(request, 'select_year.html', {'years': years})
 
 
 def select_subject(request, year):
-    old_year = get_old_year(year)
+    old_year = urllib.parse.unquote_plus(year)
     with open('olymp.csv', "r") as fin:
         results = csv.DictReader(fin, delimiter=';', quotechar='"')
         subjects = dict()
         for cur in results:
             if cur['Year'] == old_year:
-                subjects[get_new_string(cur['Subject'])] = True
+                subjects[cur['Subject']] = True
         return render(request, 'select_subject.html', {'subjects': subjects})
 
 
 def select_type(request, year, subject):
-    old_year = get_old_year(year)
-    old_subject = get_old_string(urllib.parse.unquote_plus(subject))
+    old_year = urllib.parse.unquote_plus(year)
+    old_subject = urllib.parse.unquote_plus(subject)
     with open("olymp.csv", "r") as fin:
         results = csv.DictReader(fin, delimiter=';', quotechar='"')
         types = dict()
         for cur in results:
             if cur['Year'] == old_year and cur['Subject'] == old_subject:
-                types[get_new_string(cur['OlympiadType'])] = True
+                types[cur['OlympiadType']] = True
         return render(request, 'select_type.html', {'types': types})
 
 
 def select_stage(request, year, subject, type):
-    old_year = get_old_year(year)
-    old_subject = get_old_string(urllib.parse.unquote_plus(subject))
-    old_type = get_old_string(urllib.parse.unquote_plus(type))
+    old_year = urllib.parse.unquote_plus(year)
+    old_subject = urllib.parse.unquote_plus(subject)
+    old_type = urllib.parse.unquote_plus(type)
     with open("olymp.csv", "r") as fin:
         results = csv.DictReader(fin, delimiter=';', quotechar='"')
         stages = dict()
@@ -99,9 +59,9 @@ def select_stage(request, year, subject, type):
 
 
 def get_results(request, year, subject, type, stage):
-    old_year = get_old_year(year)
-    old_subject = get_old_string(urllib.parse.unquote_plus(subject))
-    old_type = get_old_string(urllib.parse.unquote_plus(type))
+    old_year = urllib.parse.unquote_plus(year)
+    old_subject = urllib.parse.unquote_plus(subject)
+    old_type = urllib.parse.unquote_plus(type)
     with open('olymp.csv') as fin:
         results = csv.DictReader(fin, delimiter=';', quotechar='"')
         my_results = dict()
